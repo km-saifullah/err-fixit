@@ -55,7 +55,7 @@ const app = express();
 
 app.use((err, req, res, next) => {
   const errorResponse = errorHandler(err);
-  res.status(errorResponse.errorCode || 500).json(errorResponse);
+  return res.status(errorResponse.errorCode || 500).json(errorResponse);
 });
 
 app.listen(3000, () => console.log("Server running on port 3000"));
@@ -114,7 +114,7 @@ If an unknown error occurs, the package provides a general response:
 ```json
 {
   "status": false,
-  "message": "an unknown error occurred.",
+  "message": "an unknown error occurred",
   "errorCode": 500
 }
 ```
