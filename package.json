@@ -2,13 +2,8 @@
   "name": "err-fixit",
   "version": "1.0.0",
   "description": "A single package to manage all errors in a MERN stack application",
-  "main": "index.js",
-  "module": "index.mjs",
-  "types": "index.d.ts",
-  "exports": {
-    "require": "./index.js",
-    "import": "./index.mjs"
-  },
+  "main": "src/index.js",
+  "module": "src/index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -21,7 +16,10 @@
     "error-fix",
     "fix-error",
     "handle-error",
-    "api-error"
+    "api-error",
+    "database-errors",
+    "cast-error",
+    "validation-error"
   ],
   "author": "Khaled Md Saifullah",
   "license": "MIT",
