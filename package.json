@@ -1,0 +1,32 @@
+{
+  "name": "err-fixit",
+  "version": "1.0.0",
+  "description": "A single package to manage all errors in a MERN stack application",
+  "main": "index.js",
+  "module": "index.mjs",
+  "types": "index.d.ts",
+  "exports": {
+    "require": "./index.js",
+    "import": "./index.mjs"
+  },
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "error-handler",
+    "mern",
+    "express",
+    "api",
+    "error-fix",
+    "fix-error",
+    "handle-error",
+    "api-error"
+  ],
+  "author": "Khaled Md Saifullah",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/km-saifullah/err-fixit.git"
+  }
+}
