@@ -1,4 +1,4 @@
-//  handle duplicate key errors | MongoDB
+// handle duplicate key errors | MongoDB
 function handleDuplicateKeyError(error) {
   const field = Object.keys(error.keyValue)[0];
   return {
@@ -9,7 +9,7 @@ function handleDuplicateKeyError(error) {
   };
 }
 
-//  handle Cast Errors | Invalid ObjectId etc.
+// handle Cast Errors | invalid ObjectId etc.
 function handleCastError(error) {
   return {
     status: false,
@@ -19,7 +19,7 @@ function handleCastError(error) {
   };
 }
 
-// handle validation errors
+// handle generic validation errors
 function handleValidationError(error) {
   const errors = Object.values(error.errors).map((err) => ({
     field: err.path,
@@ -42,7 +42,7 @@ function handleUnknownError(error) {
   };
 }
 
-//  handle all errors
+// handle all errors
 function errorHandler(error) {
   if (error.name === "MongoServerError" && error.code === 11000) {
     return handleDuplicateKeyError(error);

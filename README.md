@@ -21,37 +21,68 @@
 - Provides a structured response with a `status: false` field
 - Supports both CommonJS (`require`) and ES Modules (`import`)
 
+## **Supported Errors**
+
+| Error Type                              | Description                                                 |
+| --------------------------------------- | ----------------------------------------------------------- |
+| **Duplicate Key Error** (`code: 11000`) | Happens when inserting a duplicate value in a unique field. |
+| **CastError**                           | Occurs when an invalid ObjectId or incorrect type is used.  |
+| **ValidationError**                     | Mongoose validation errors.                                 |
+| **Unknown Error**                       | Any other unhandled errors.                                 |
+
 ## Installation
 
 To install the package run:
 
 ```sh
-npm install error-handler
+npm i err-fixit
 ```
 
 ## Usage
 
-### 1. Import the package
-
-#### CommonJS (require)
-
-```js
-const { errorHandler } = require("error-handler");
-```
-
-#### ES Module (import)
-
-```js
-import { errorHandler } from "error-handler";
-```
-
-### 2. Use in Express Middleware
+### **For CommonJS (`require`)**
 
 ```js
 const express = require("express");
-const { errorHandler } = require("error-handler");
+const { errorHandler } = require("err-fixit");
 
 const app = express();
+
+app.get("/", (req, res, next) => {
+  const error = new Error("something went wrong!");
+  next(error);
+});
+
+app.use((err, req, res, next) => {
+  const errorResponse = errorHandler(err);
+  return res.status(errorResponse.errorCode || 500).json(errorResponse);
+});
+
+app.listen(3000, () => console.log("Server running on port 3000"));
+```
+
+### **For ES Modules (`import`)**
+
+First, ensure your `package.json` includes:
+
+```json
+{
+  "type": "module"
+}
+```
+
+Then, use the following code:
+
+```js
+import express from "express";
+import { errorHandler } from "err-fixit";
+
+const app = express();
+
+app.get("/", (req, res, next) => {
+  const error = new Error("something went wrong");
+  next(error);
+});
 
 app.use((err, req, res, next) => {
   const errorResponse = errorHandler(err);
